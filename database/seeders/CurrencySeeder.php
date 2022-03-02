@@ -51,6 +51,23 @@ class CurrencySeeder extends Seeder
 
         $last_rates = $rates_per_day[1];
         $rate_day = $last_rates["@attributes"]["time"];
+        $currency = new Currency([
+            "code"  =>  "EUR",
+            "name"  =>  "European Euro",
+            "symbol"    =>  "€",
+            "country"   =>  "European Union",
+            "flag"   =>  "",
+        ]);
+        $currency->save();
+        $currency->rates()->saveMany([
+            new Rate(
+                [
+                    "rate"  =>  1,
+                    "date"  =>  $rate_day,
+                ]
+            ),
+        ]);
+
         foreach($last_rates["Cube"] as $data_point){
             $code = $data_point["@attributes"]["currency"];
             $name = $currency_names[$code]["name"] ?? $code;

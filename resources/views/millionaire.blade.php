@@ -9,13 +9,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="grid grid-cols-5 gap-4">
                     @foreach($currencies as $currency)
-                        <li>To be a {{$currency->flag}} <b>{{$currency->name}}</b> millionaire,
-                            you need <b>{{number_format(1000000 / $currency->rate,0,","," ")}} &euro;</b></li>
+                        <button class="text-center m-2" style="font-family: Nunito">
+                            <a href="/in/{{$currency->code}}">
+                            To be a <br />
+                            <span class="text-xl">{{$currency->flag}}</span> {{$currency->name}}<br />
+                            millionaire,<br />
+                            you need <br/>
+                            <span class="text-green-600 text-xl"><b>{{number_format(1000000 / $currency->rate,0,","," ")}} &euro;</b></span>
+                            </a>
+                        </button>
                     @endforeach
-                </div>
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <i>Wait, did I say millionaire? I meant <a class="underline" href="/billion">billionaire</a>!</i>
+                    </div>
                 </div>
             </div>
         </div>

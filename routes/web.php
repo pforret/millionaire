@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ HomeController::class, 'million']);
-Route::get('/test', [ HomeController::class, 'test']);
 Route::get('/billion', [ HomeController::class, 'billion']);
-Route::get('/in/{code}', CurrencyController::class)->name("currency");
+Route::get('/in/{code}', [CurrencyController::class, 'show']);
+
+Route::get('/test', [ HomeController::class, 'test']);
 
 require __DIR__.'/auth.php';
