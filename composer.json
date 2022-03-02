@@ -6,13 +6,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "ext-libxml": "*",
+        "ext-simplexml": "*",
+        "fx3costa/laravelchartjs": "^2.9",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.5.4",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.7",
-        "tightenco/ziggy": "^1.0",
-      "ext-simplexml": "*"
+        "spatie/simple-excel": "^1.15",
+        "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",

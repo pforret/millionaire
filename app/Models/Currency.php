@@ -17,7 +17,7 @@ use Illuminate\Support\Carbon;
  * @property string $name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Collection|\App\Models\Rate[] $rates
+ * @property-read Collection|\App\Services\Rate[] $rates
  * @property-read int|null $rates_count
  * @method static Builder|Currency newModelQuery()
  * @method static Builder|Currency newQuery()

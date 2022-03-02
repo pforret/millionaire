@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rates', function (Blueprint $table) {
+        Schema::create('values', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("currency_id")->constrained();
-            $table->string("date",10);
-            $table->double("rate");
+            $table->string("type")->default("");
+            $table->string("name")->unique();
+            $table->unsignedInteger("price");
+            $table->string("url_image");
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rates');
+        Schema::dropIfExists('values');
     }
 };

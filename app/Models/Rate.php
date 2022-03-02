@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $rate
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Currency|null $currency
+ * @property-read \App\Services\Currency|null $currency
  * @method static \Illuminate\Database\Eloquent\Builder|Rate newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Rate newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Rate query()
@@ -35,10 +35,6 @@ class Rate extends Model
         'id',
         'created_at',
         'updated_at',
-    ];
-
-    protected $casts = [
-        "date"  =>  "datetime"
     ];
 
     public function currency(): BelongsTo

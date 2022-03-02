@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/', [ HomeController::class, 'million']);
+Route::get('/test', [ HomeController::class, 'test']);
+Route::get('/billion', [ HomeController::class, 'billion']);
+Route::get('/in/{code}', CurrencyController::class)->name("currency");
 
 require __DIR__.'/auth.php';

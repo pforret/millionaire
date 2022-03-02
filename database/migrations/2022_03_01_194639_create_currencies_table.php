@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-            $table->string("code",5);    // USD
-            $table->string("name");             // U.S. Dollar
+            $table->string("code",5)->unique();    // USD
+            $table->string("name")->unique();             // U.S. Dollar
+            $table->string("symbol")->nullable();
+            $table->string("country")->nullable();
+            $table->string("flag")->nullable();
             $table->timestamps();
         });
     }
