@@ -1,8 +1,8 @@
 <x-app-layout>
-    @section('page_title', "To be a millionaire in different currencies")
+    @section('page_title', "Where to be a millionaire ...")
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">To be a millionaire in different currencies ...</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight"><b>Where</b> to be a millionaire ...</h2>
     </x-slot>
 
     <div class="py-12">
@@ -12,10 +12,10 @@
                     <div class="grid grid-cols-5 gap-4">
                     @foreach($currencies as $currency)
                         @if($currency->code ?? "")
-                        <button class="text-center m-2" style="font-family: Nunito">
+                        <button class="text-center m-2" style="font-family: Nunito; border: 1px solid #EEF">
                             <a href="/in/{{$currency->code ?? ""}}">
                             To be a <br />
-                            <span class="text-xl">{{$currency->flag ?? ""}}</span> {{$currency->name ?? ""}}<br />
+                            <span class="text-xl">{{$currency->flag ?? ""}}</span> <i>{{$currency->name ?? ""}}</i><br />
                             millionaire,<br />
                             you need <br/>
                             <span class="text-green-600 text-xl"><b>{{number_format(1000000 / ($currency->rate ?? 1),0,","," ")}} &euro;</b></span>

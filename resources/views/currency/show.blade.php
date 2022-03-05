@@ -11,16 +11,26 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h2 class="text-lg font-semibold my-4">1 000 000 {{$currency->name}} = </h2>
+                    <h3 class="text-xl font-semibold my-4">How much is 1 000 000 {{$currency->name}}?</h3>
                     If you would want to be a millionaire in {{$currency->flag}} {{$currency->country}} , you need the following budget:<br><br>
                     <div class="grid grid-cols-5 gap-4">
                     @foreach($other_currencies as $other_currency)
                         @if($other_currency->code ?? "")
                             @if($other_currency->code <> $currency->code)
-                                <div>
+                                @if(in_array($other_currency->code,["USD","EUR"]) )
+                                <div class="text-center m-2" style="font-family: Nunito;">
+                                    <a href="/in/{{$other_currency->code}}"><b>
                                     <code>{{ number_format($last_rate * $other_currency->rate,0,"."," ") . " " . $other_currency->symbol}}</code><br>
-                                    <a href="/in/{{$other_currency->code}}">{{ $other_currency->flag ." ".$other_currency->name  }}</a>
+                                    {{ $other_currency->flag ." ".$other_currency->name  }}</b></a>
                                 </div>
+                                @else
+                                        <div class="text-center m-2" style="font-family: Nunito;">
+                                            <a href="/in/{{$other_currency->code}}">
+                                                <code>{{ number_format($last_rate * $other_currency->rate,0,"."," ") . " " . $other_currency->symbol}}</code><br>
+                                                <i>{{ $other_currency->flag ." ".$other_currency->name  }}</i></a>
+                                        </div>
+                                    @endif
+
                                 @endif
                         @endif
                     @endforeach
