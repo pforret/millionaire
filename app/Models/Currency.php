@@ -15,17 +15,23 @@ use Illuminate\Support\Carbon;
  * @property int $id
  * @property string $code
  * @property string $name
+ * @property string|null $symbol
+ * @property string|null $country
+ * @property string|null $flag
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Collection|\App\Services\Rate[] $rates
+ * @property-read Collection|\App\Models\Rate[] $rates
  * @property-read int|null $rates_count
  * @method static Builder|Currency newModelQuery()
  * @method static Builder|Currency newQuery()
  * @method static Builder|Currency query()
  * @method static Builder|Currency whereCode($value)
+ * @method static Builder|Currency whereCountry($value)
  * @method static Builder|Currency whereCreatedAt($value)
+ * @method static Builder|Currency whereFlag($value)
  * @method static Builder|Currency whereId($value)
  * @method static Builder|Currency whereName($value)
+ * @method static Builder|Currency whereSymbol($value)
  * @method static Builder|Currency whereUpdatedAt($value)
  * @mixin \Eloquent
  */

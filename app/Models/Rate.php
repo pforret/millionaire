@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Log;
 
 /**
  * App\Models\Rate
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $rate
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Services\Currency|null $currency
+ * @property-read \App\Models\Currency $currency
  * @method static \Illuminate\Database\Eloquent\Builder|Rate newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Rate newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Rate query()
@@ -40,5 +41,22 @@ class Rate extends Model
     public function currency(): BelongsTo
     {
         return $this->belongsTo(Currency::class);
+    }
+
+    static function last_rates(): array
+    {
+        $currencies = Currency::all();
+        $result=[];
+        foreach($currencies as $currency){
+            $result[$currency->code] = Currency::query()
+                ->join("rates", "rates.currency_id", "=", "currencies.id")
+                ->where("code", "=", $currency->code)
+                ->orderBy("rates.date","desc")
+                ->select(["code","name","symbol","country","flag","date","rate"])
+                ->first();
+        }
+        ksort($result);
+        Log::info("Last Rates",$result);
+        return $result;
     }
 }

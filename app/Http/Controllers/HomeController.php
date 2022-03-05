@@ -12,12 +12,7 @@ class HomeController extends Controller
 
     static function million(Request $request): View
     {
-        $last_day = Rate::query()->select("date")->max("date");
-        $currencies = Currency::query()
-            ->join("rates", "rates.currency_id", "=", "currencies.id")
-            ->where("rates.date", "=", $last_day)
-            ->orderBy("rates.rate")
-            ->get();
+        $currencies = Rate::last_rates();
         return view('millionaire', ["currencies" => $currencies]);
     }
 
@@ -61,7 +56,27 @@ class HomeController extends Controller
                     'data' => [12, 33, 44, 44, 55, 23, 40],
                 ]
             ])
-            ->options([]);
+            ->options([
+                "scales"    =>  [
+                    "yAxes"     =>  [
+                        "ticks" =>  [
+                            "beginAtZero"   =>  true,
+                        ]
+                    ]
+                ]
+            ]);
+        /*
+         * options: {
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    }
+}
+
+         */
 
         return view('test.chartjs', compact('chartjs'));
     }

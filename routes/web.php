@@ -21,4 +21,6 @@ Route::get('/in/{code}', [CurrencyController::class, 'show']);
 
 Route::get('/test', [ HomeController::class, 'test']);
 
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+
 require __DIR__.'/auth.php';

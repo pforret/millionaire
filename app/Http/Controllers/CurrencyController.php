@@ -12,18 +12,19 @@ class CurrencyController extends Controller
     public function show($code): View
     {
         $currency = Currency::whereCode($code)->first();
-        $rates = Rate::whereCurrencyId($currency->id)->orderBy("date")->get();
+        $rates = Rate::query()->where("currency_id", "=", $currency->id)->orderBy("date")->get();
         $array_dates=[];
         $array_rates=[];
         foreach($rates as $rate){
             $array_dates[]=$rate->date;
-            $array_rates[]=1000000 / $rate->rate;
+            $array_rates[]=round(1000000 / $rate->rate,2);
+            $last_rate = round(1000000 / $rate->rate,2);
         }
 
         $chartjs = app()->chartjs
             ->name('lineChartTest')
             ->type('line')
-            ->size(['width' => 400, 'height' => 200])
+            ->size(['width' => 400, 'height' => 100])
             ->labels($array_dates)
             ->datasets([
                 [
@@ -37,12 +38,23 @@ class CurrencyController extends Controller
                     'data' => $array_rates,
                 ]
             ])
-            ->options([]);
+            ->options([
+                "scales"    =>  [
+                    "yAxes"     =>  [
+                        "ticks" =>  [
+                            "beginAtZero"   =>  true,
+                        ],
+                        //"min"   =>  0,
+                    ],
+                ]
+            ]);
 
         return view('currency.show', [
             "code"   => $code,
             "currency"  =>  $currency,
             "chartjs"   =>  $chartjs,
+            "last_rate" =>  $last_rate,
+            "page_title"    =>  "test"
             ]);
     }
 }

@@ -21,60 +21,14 @@ class CurrencySeeder extends Seeder
      */
     public function run()
     {
-        $exchange = new ExchangeRateService();
-        $rates_per_day = $exchange->get();
-        /*
-                 $data["Cube"]["Cube"][0]
-        => [
-             "@attributes" => [
-               "time" => "2022-03-02",
-             ],
-             "Cube" => [
-               [
-                 "@attributes" => [
-                   "currency" => "USD",
-                   "rate" => "1.1106",
-                 ],
-               ],
-               [
-                 "@attributes" => [
-                   "currency" => "JPY",
-                   "rate" => "128.08",
-                 ],
-
-         */
         $name_records=SimpleExcelReader::create(__DIR__ . "/currency_names.csv")->useDelimiter(";")->getRows();
-        $currency_names=[];
         foreach($name_records as $name_record){
             $currency_names[$name_record["code"]]=$name_record;
-        }
-
-        $last_rates = $rates_per_day[1];
-        $rate_day = $last_rates["@attributes"]["time"];
-        $currency = new Currency([
-            "code"  =>  "EUR",
-            "name"  =>  "European Euro",
-            "symbol"    =>  "€",
-            "country"   =>  "European Union",
-            "flag"   =>  "",
-        ]);
-        $currency->save();
-        $currency->rates()->saveMany([
-            new Rate(
-                [
-                    "rate"  =>  1,
-                    "date"  =>  $rate_day,
-                ]
-            ),
-        ]);
-
-        foreach($last_rates["Cube"] as $data_point){
-            $code = $data_point["@attributes"]["currency"];
-            $name = $currency_names[$code]["name"] ?? $code;
-            $symbol = $currency_names[$code]["symbol"] ?? "";
-            $country = $currency_names[$code]["country"] ?? "";
-            $flag = $currency_names[$code]["flag"] ?? "";
-            $rate = $data_point["@attributes"]["rate"];
+            $code = $name_record["code"];
+            $name = $name_record["name"];
+            $symbol = $name_record["symbol"];
+            $country = $name_record["country"];
+            $flag = $name_record["flag"];
 
             $currency = new Currency([
                 "code"  =>  $code,
@@ -83,16 +37,7 @@ class CurrencySeeder extends Seeder
                 "country"   =>  $country,
                 "flag"   =>  $flag,
             ]);
-
             $currency->save();
-            $currency->rates()->saveMany([
-                new Rate(
-                    [
-                        "rate"  =>  $rate,
-                        "date"  =>  $rate_day,
-                    ]
-                ),
-            ]);
         }
     }
 }

@@ -14,6 +14,7 @@
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.7",
+        "rap2hpoutre/laravel-log-viewer": "^2.1",
         "spatie/simple-excel": "^1.15",
         "tightenco/ziggy": "^1.0"
     },

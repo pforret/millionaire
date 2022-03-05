@@ -168,6 +168,8 @@ return [
          * Package Service Providers...
          */
         Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+
 
         /*
          * Application Service Providers...
