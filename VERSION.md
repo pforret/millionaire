@@ -1,1 +1,1 @@
-0.0.6
+resources/views/VERSION.blade.php

@@ -4,7 +4,7 @@
         <div class="flex justify-between h-16">
             <ul class="flex">
                 <li class="mr-6">
-                    <img style="height: 48px" src="/android-chrome-192x192.png" alt="Logo">
+                    <img style="height: 32px" src="/android-chrome-192x192.png" alt="Logo">
                 </li>
                 <li class="mr-6">
                     <a class="text-blue-500 hover:text-blue-800" href="/">Home</a>

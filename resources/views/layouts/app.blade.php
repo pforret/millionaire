@@ -34,6 +34,7 @@
                     &copy; 2022
                     &bull; Website by <a href="https://blog.forret.com">Peter Forret</a>
                     &bull; Rates via <a href="https://www.ecb.europa.eu">European Central Bank</a>
+                    &bull; <code>v @include("VERSION")</code>
                 </div>
             </footer>
         </div>
