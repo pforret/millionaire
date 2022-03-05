@@ -54,7 +54,8 @@ class CurrencyController extends Controller
             "currency"  =>  $currency,
             "chartjs"   =>  $chartjs,
             "last_rate" =>  $last_rate,
-            "page_title"    =>  "test"
+            "page_title"    =>  "test",
+            "other_currencies"    =>  Rate::last_rates(),
             ]);
     }
 }

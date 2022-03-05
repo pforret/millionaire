@@ -3,7 +3,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            To be a <b>{{ $currency->flag . " " . $currency->name }} millionaire</b>, you need {{$last_rate}} &euro;
+            To be a <b>{{ $currency->flag . " " . $currency->name }} millionaire</b>, you need {{number_format($last_rate,0,"."," ")}} &euro;
         </h2>
     </x-slot>
 
@@ -11,7 +11,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-
+                    <h2 class="text-lg font-semibold my-4">1 000 000 {{$currency->name}} = </h2>
+                    <div class="grid grid-cols-5 gap-4">
+                    @foreach($other_currencies as $other_currency)
+                        @if($other_currency->code ?? "")
+                            @if($other_currency->code <> $currency->code)
+                                <div>
+                                    <code>{{ number_format($last_rate * $other_currency->rate,0,"."," ") . " " . $other_currency->symbol}}</code><br>
+                                    {{ $other_currency->flag ." ".$other_currency->name  }}
+                                </div>
+                                @endif
+                        @endif
+                    @endforeach
+                    </div>
                 </div>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

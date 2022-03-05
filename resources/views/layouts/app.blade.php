@@ -30,8 +30,10 @@
             </main>
 
             <footer>
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    Website by Peter Forret
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-sm text-center">
+                    &copy; 2022
+                    &bull; Website by <a href="https://blog.forret.com">Peter Forret</a>
+                    &bull; Rates via <a href="https://www.ecb.europa.eu">European Central Bank</a>
                 </div>
             </footer>
         </div>

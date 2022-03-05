@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -45,6 +46,10 @@ class Rate extends Model
 
     static function last_rates(): array
     {
+        $cache_id="CurrenciesLastRates";
+        if(Cache::get($cache_id)){
+            return Cache::get($cache_id);
+        }
         $currencies = Currency::all();
         $result=[];
         foreach($currencies as $currency){
@@ -56,7 +61,7 @@ class Rate extends Model
                 ->first();
         }
         ksort($result);
-        Log::info("Last Rates",$result);
+        Cache::put($cache_id,$result,3600);
         return $result;
     }
 }
