@@ -12,7 +12,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3 class="text-xl font-semibold my-4">How much is 1 000 000 {{$currency->name}}?</h3>
-                    If you would want to be a millionaire in {{$currency->flag}} {{$currency->country}} , you need the following budget:<br><br>
+                    If you would want to be a millionaire in {{$currency->flag}} {{$currency->country}} , you need at least:<br><br>
                     <div class="grid grid-cols-5 gap-4">
                     @foreach($other_currencies as $other_currency)
                         @if($other_currency->code ?? "")
