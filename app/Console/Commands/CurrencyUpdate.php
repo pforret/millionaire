@@ -6,6 +6,7 @@ use App\Models\Currency;
 use App\Models\Rate;
 use App\Services\ExchangeRateService;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class CurrencyUpdate extends Command
 {
@@ -93,6 +94,7 @@ class CurrencyUpdate extends Command
             // insert/update last day
             $last_rates=$rates[0];
             $date = $last_rates["@attributes"]["time"] ?? "";
+            $rates_updated=0;
             if($date){
                 $this->info("Ingest rates for $date ...");
                 foreach($last_rates["Cube"] as $rate_data){
@@ -100,6 +102,7 @@ class CurrencyUpdate extends Command
                     $currency_id=$map_currencies[$attributes["currency"]] ?? "";
                     if($currency_id){
                         $this->info("Insert for $date/" . $attributes["currency"] . ": " . $attributes["rate"]);
+                        $rates_updated++;
                         Rate::updateOrCreate(
                             [
                                 "currency_id"   =>  $currency_id,
@@ -123,6 +126,7 @@ class CurrencyUpdate extends Command
 
             }
             $this->info("Total rates: " . Rate::all()->count());
+            Log::info("Updated rates for $date: $rates_updated currencies updated");
         }
         return 0;
     }
