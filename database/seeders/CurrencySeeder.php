@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Currency;
 use App\Models\Rate;
-use App\Services\ExchangeRateService;
+use App\Services\EuRateService;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

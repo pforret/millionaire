@@ -4,7 +4,8 @@ namespace App\Console\Commands;
 
 use App\Models\Currency;
 use App\Models\Rate;
-use App\Services\ExchangeRateService;
+use App\Services\EuRateService;
+use App\Services\FloatRateService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
@@ -15,7 +16,7 @@ class CurrencyUpdate extends Command
      *
      * @var string
      */
-    protected $signature = 'million:rates {--all}';
+    protected $signature = 'million:rates {--all} {--test} {{--float}}';
 
     /**
      * The console command description.
@@ -41,77 +42,37 @@ class CurrencyUpdate extends Command
      */
     public function handle()
     {
-        $exch = new ExchangeRateService();
-        $rates = $exch->get();
-        /*
-        * (
-        [@attributes] => Array ( [time] => 2022-03-04 )
-        [Cube] => Array
-            (
-            [0] => Array ( [@attributes] => Array ( [currency] => USD [rate] => 1.0929 ) )
-            [1] => Array ( [@attributes] => Array ( [currency] => JPY [rate] => 126.17 ) )
-        */
-
-        $currencies = Currency::query()->select(["id","code"])->get();
         $map_currencies=[];
+        $currencies = Currency::query()->select(["id","code"])->get();
         foreach($currencies as $currency){
             $map_currencies[$currency->code]=$currency->id;
         }
-        if($this->option("all")){
-            // insert/update all days
-            foreach($rates as $day_rates){
-                $date = $day_rates["@attributes"]["time"] ?? "";
-                if($date){
-                    $this->info("Ingest rates for $date ...");
-                    foreach($day_rates["Cube"] as $rate_data){
-                        $attributes = $rate_data["@attributes"];
-                        $currency_id=$map_currencies[$attributes["currency"]] ?? "";
-                        if($currency_id){
-                            Rate::updateOrCreate(
-                                [
-                                    "currency_id"   =>  $currency_id,
-                                    "date"          =>  $date,
-                                ],
-                                [
-                                    "rate"          =>  $attributes["rate"] ?? 0
-                                ]
-                            );
-                        }
-                    }
-                    Rate::updateOrCreate(
-                        [
-                            "currency_id"   =>  $map_currencies["EUR"],
-                            "date"          =>  $date,
-                        ],
-                        [
-                            "rate"          =>  1
-                        ]
-                    );
-                }
-            }
-            $this->info("Total rates: " . Rate::all()->count());
+        if($this->option("all")) {
+            // take 90 days
+            $rates = (new EuRateService())->get("EUR", 90);
         } else {
-            // insert/update last day
-            $last_rates=$rates[0];
-            $date = $last_rates["@attributes"]["time"] ?? "";
-            $rates_updated=0;
+            // take only most recent
+            //$all_rates = (new EuRateService())->get("EUR",7);
+            $all_rates=(new FloatRateService())->get();
+            $rates=array_slice($all_rates,0,1, true);
+        }
+        $nb_updates=0;
+        foreach($rates as $date => $day_rates){
             if($date){
                 $this->info("Ingest rates for $date ...");
-                foreach($last_rates["Cube"] as $rate_data){
-                    $attributes = $rate_data["@attributes"];
-                    $currency_id=$map_currencies[$attributes["currency"]] ?? "";
+                foreach($day_rates as $currency => $rate){
+                    $currency_id=$map_currencies[$currency] ?? "";
                     if($currency_id){
-                        $this->info("Insert for $date/" . $attributes["currency"] . ": " . $attributes["rate"]);
-                        $rates_updated++;
                         Rate::updateOrCreate(
                             [
                                 "currency_id"   =>  $currency_id,
                                 "date"          =>  $date,
                             ],
                             [
-                                "rate"          =>  $attributes["rate"] ?? 0,
+                                "rate"          =>  $rate,
                             ]
                         );
+                        $nb_updates++;
                     }
                 }
                 Rate::updateOrCreate(
@@ -123,11 +84,10 @@ class CurrencyUpdate extends Command
                         "rate"          =>  1
                     ]
                 );
-
+                $nb_updates++;
             }
-            $this->info("Total rates: " . Rate::all()->count());
-            Log::info("Updated rates for $date: $rates_updated currencies updated");
         }
+        $this->info("Total updates: $nb_updates");
         return 0;
     }
 }
