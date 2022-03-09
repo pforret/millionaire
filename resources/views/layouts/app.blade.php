@@ -13,6 +13,20 @@
         <!-- Scripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@2BAmillionai_re">
+        <meta name="twitter:creator" content="@2BAmillionai_re">
+        <meta name="twitter:title" content="@yield('page_title')">
+        <meta name="twitter:description" content="@yield('page_title')">
+        <meta name="twitter:image" content="@yield('page_image')">
+        <meta name="twitter:image:alt" content="@yield('page_title')">
+        <meta property="og:url"                content="@yield('page_url')" />
+        <meta property="og:type"               content="article" />
+        <meta property="og:title"              content="@yield('page_title')" />
+        <meta property="og:description"        content="@yield('page_title')" />
+        <meta property="og:image"              content="@yield('page_image')" />
+        <meta property="og:image:alt"          content="@yield('page_title')" />
+
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -27,6 +41,7 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+                @include("components.sharethis")
             </main>
 
             <footer>

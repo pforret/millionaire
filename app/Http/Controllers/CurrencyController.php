@@ -55,6 +55,7 @@ class CurrencyController extends Controller
             "chartjs"   =>  $chartjs,
             "last_rate" =>  $last_rate,
             "page_title"    =>  "test",
+            "page_url"      =>  (new Request)->url(),
             "other_currencies"    =>  Rate::last_rates(),
             ]);
     }

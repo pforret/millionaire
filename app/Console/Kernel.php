@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('million:rates')->hourly();
+        $schedule->command('million:images')->hourly();
     }
 
     /**

@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="grid grid-cols-5 gap-4">
+                    <div class="grid md:grid-cols-5 gap-4">
                     @foreach($currencies as $currency)
                         @if($currency->code ?? "")
                         <button class="text-center m-2" style="font-family: Nunito; border: 1px solid #EEF">
