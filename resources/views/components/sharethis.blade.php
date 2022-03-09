@@ -5,7 +5,7 @@
                 Share to Twitter
             </a>
             &bull;
-            <a href="https://www.reddit.com/submit?url=@yield('page_url')"
+            <a href="https://www.reddit.com/submit?url=@yield('page_url')&title=@yield('page_title')"
                target="_blank">
                 Share to Reddit
             </a>
