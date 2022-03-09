@@ -18,13 +18,13 @@
         <meta name="twitter:creator" content="@2BAmillionai_re">
         <meta name="twitter:title" content="@yield('page_title')">
         <meta name="twitter:description" content="@yield('page_title')">
-        <meta name="twitter:image" content="@yield('page_image')">
+        <meta name="twitter:image" content="@yield('page_img')">
         <meta name="twitter:image:alt" content="@yield('page_title')">
         <meta property="og:url"                content="@yield('page_url')" />
         <meta property="og:type"               content="article" />
         <meta property="og:title"              content="@yield('page_title')" />
         <meta property="og:description"        content="@yield('page_title')" />
-        <meta property="og:image"              content="@yield('page_image')" />
+        <meta property="og:image"              content="@yield('page_img')" />
         <meta property="og:image:alt"          content="@yield('page_title')" />
 
     </head>

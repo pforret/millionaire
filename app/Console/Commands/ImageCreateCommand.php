@@ -44,7 +44,7 @@ class ImageCreateCommand extends Command
                 $font->align('center');
                 $font->valign('center');
             });
-            $image->save("public/images/$code.jpg");
+            $image->save("storage/app/public/$code.jpg");
 
         }
 

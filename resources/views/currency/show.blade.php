@@ -1,5 +1,7 @@
 <x-app-layout>
     @section('page_title', "To be a " . $currency->name . " millionaire, you need " . round($last_rate) . "€")
+    @section('page_url', $page_url)
+    @section('page_img', $page_img)
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -12,7 +14,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3 class="text-xl font-semibold my-4">How much is 1 000 000 {{$currency->name}}?</h3>
-                    <img src="/images/{{$currency->code}}.jpg" alt="">
+                    <img src="/storage/{{$currency->code}}.jpg" alt="To be a millionaire" style="max-width: 500px">
                     If you would want to be a millionaire in {{$currency->flag}} {{$currency->country}} , you need at least:<br><br>
                     <div class="grid md:grid-cols-5 gap-4">
                     @foreach($other_currencies as $other_currency)
