@@ -1,5 +1,7 @@
 <x-app-layout>
-    @section('page_title', "Where to be a millionaire ...")
+    @section('page_title', "To be a ... millionaire, you need ... €")
+    @section('page_url', $page_url)
+    @section('page_img', $page_img)
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight"><b>Where</b> to be a millionaire ...</h2>
