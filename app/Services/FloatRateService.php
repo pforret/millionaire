@@ -22,6 +22,6 @@ class FloatRateService extends BaseRateService
         }
         $date=date("Y-m-d",strtotime($last_date));
         ksort($rates);
-        return [$last_date => $rates];
+        return [$date => $rates];
     }
 }
