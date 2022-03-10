@@ -57,9 +57,12 @@ class CurrencyUpdate extends Command
             $rates=array_slice($all_rates,0,1, true);
         }
         $nb_updates=0;
+        $bar = $this->output->createProgressBar(count($rates));
+        $bar->start();
         foreach($rates as $date => $day_rates){
+            $bar->advance();
             if($date){
-                $this->info("Ingest rates for $date ...");
+                //$this->info("Ingest rates for $date ...");
                 foreach($day_rates as $currency => $rate){
                     $currency_id=$map_currencies[$currency] ?? "";
                     if($currency_id){
@@ -87,6 +90,7 @@ class CurrencyUpdate extends Command
                 $nb_updates++;
             }
         }
+        $bar->finish();
         $this->info("Total updates: $nb_updates");
         return 0;
     }

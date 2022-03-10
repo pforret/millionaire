@@ -53,12 +53,15 @@ class Rate extends Model
         $currencies = Currency::all();
         $result=[];
         foreach($currencies as $currency){
-            $result[$currency->code] = Currency::query()
+            $data = Currency::query()
                 ->join("rates", "rates.currency_id", "=", "currencies.id")
                 ->where("code", "=", $currency->code)
                 ->orderBy("rates.date","desc")
                 ->select(["code","name","symbol","country","flag","date","rate"])
                 ->first();
+            if($data){
+                $result[$currency->code] = $data;
+            }
         }
         ksort($result);
         Cache::put($cache_id,$result,3600);

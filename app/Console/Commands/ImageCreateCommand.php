@@ -33,26 +33,35 @@ class ImageCreateCommand extends Command
     {
         $manager = new ImageManager(['driver' => 'gd']);
         $currencies = Rate::last_rates();
+        $bar = $this->output->createProgressBar(count($currencies));
+        $bar->start();
         foreach($currencies as $currency){
-            $code = $currency->code;
-            $image = $manager->make('public/images/background3.jpg')->resize(800, 400);
-            $budget = number_format(1000000 / $currency->rate,0,","," ");
-            $image->text("To be a\n$currency->name\nmillionaire,\nyou need $budget €", 400, 200, function($font) {
-                $font->file('storage/fonts/Nunito-Bold.ttf');
-                $font->size(60);
-                $font->color('#FFFFFF');
-                $font->align('center');
-                $font->valign('center');
-            });
-            $image->text(date("Y-m-d"), 32, 16, function($font) {
-                $font->file('storage/fonts/Nunito-Light.ttf');
-                $font->size(16);
-                $font->color('#FFFFFF');
-                $font->valign('top');
-            });
-            $image->save("storage/app/public/$code.jpg");
+            $bar->advance();
+            if($currency->code ?? ""){
+                $code = $currency->code;
+                $image = $manager->make('public/images/background3.jpg')->resize(800, 400);
+                $budget = number_format(1000000 / $currency->rate,0,","," ");
+                $image->text("To be a\n$currency->name\nmillionaire,\nyou need $budget €", 400, 200, function($font) {
+                    $font->file('storage/fonts/Nunito-Bold.ttf');
+                    $font->size(60);
+                    $font->color('#FFFFFF');
+                    $font->align('center');
+                    $font->valign('center');
+                });
+                $image->text(date("Y-m-d"), 32, 16, function($font) {
+                    $font->file('storage/fonts/Nunito-Light.ttf');
+                    $font->size(16);
+                    $font->color('#FFFFFF');
+                    $font->valign('top');
+                });
+                $image->save("storage/app/public/$code.jpg");
+
+            } else {
+                $this->warn("(skip empty code)");
+            }
 
         }
+        $bar->finish();
 
         return 0;
     }

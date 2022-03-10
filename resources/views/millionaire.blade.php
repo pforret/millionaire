@@ -1,5 +1,6 @@
 <x-app-layout>
     @section('page_title', "To be a ... millionaire, you need ... €")
+    @section('page_subtitle', "How much money does one need to be a millionaire in UK pound or Indonesian rupiah?")
     @section('page_url', $page_url)
     @section('page_img', $page_img)
 

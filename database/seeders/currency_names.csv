@@ -1,13 +1,22 @@
 country;flag;code;name;symbol
+Albania;🇦🇱;ALL;Albanian lek;L
+Algeria;🇩🇿;DZD;Algerian dinar;دج
+Angola;🇦🇴;AOA;Angolan kwanza;Kz
+Argentina;🇦🇷;ARS;Argentine peso;Ar$
 Australia;🇦🇺;AUD;Australian dollar;A$
+Belarus;🇧🇾;BYN;Belarusian Ruble;Лв
 Brazil;🇧🇷;BRL;Brazilian real;R$
 Bulgaria;🇧🇬;BGN;Bulgarian lev;Лв
-Belarus;🇧🇾;BYN;Belarusian Ruble;Лв
 Canada;🇨🇦;CAD;Canadian dollar;C$
+Chad;🇹🇩;XAF;Central African franc;FCFA
+Chile;🇨🇱;CLP;Chilean peso;Ch$
 China;🇨🇳;CNY;Chinese yuan;CN¥
+Congo;🇨🇬;CDF;Congolese franc;FC
 Croatia;🇭🇷;HRK;Croatian kuna
+Cuba;🇨🇺;CUP;Cuban peso;Cu$
 Czechia;🇨🇿;CZK;Czech koruna
 Denmark;🇩🇰;DKK;Danish krone
+Egypt;🇪🇬;EGP;Egyptian pound;ج.م
 European Union;🇪🇺;EUR;European euro;€
 Hong Kong;🇭🇰;HKD;Hong Kong dollar;HK$
 Hungary;🇭🇺;HUF;Hungarian forint;Ft.
@@ -16,10 +25,16 @@ India;🇮🇳;INR;Indian rupee;₹
 Indonesia;🇮🇩;IDR;Indonesian rupiah;Rp
 Israel;🇮🇱;ILS;Israeli shekel;₪
 Japan;🇯🇵;JPY;Japanese yen;円
+Kenya;🇰🇪;KES;Kenyan shilling;Ksh
+Lebanon;🇱🇧;LBP;Lebanese pound;ل.ل.‎
+Libya;🇱🇾;LYD;Libyan dinar;ل.د
 Malaysia;🇲🇾;MYR;Malaysian ringgit;RM
 Mexico;🇲🇽;MXN;Mexican peso
+Morocco;🇲🇦;MAD;Moroccan dirham;د. م.
 New Zealand;🇳🇿;NZD;New Zealand dollar;NZ$
 Norway;🇳🇴;NOK;Norwegian krone;kr
+Pakistan;🇵🇰;PKR;Pakistani rupee;Rs
+Peru;🇵🇪;PEN;Peruvian nuevo sol;S/
 Philippines;🇵🇭;PHP;Philippine peso;₱
 Poland;🇵🇱;PLN;Polish zloty;zł
 Romania;🇷🇴;RON;Romanian leu;lei
@@ -27,10 +42,15 @@ Russia;🇷🇺;RUB;Russian ruble;₽
 Singapore;🇸🇬;SGD;Singapore dollar;$
 South Africa;🇿🇦;ZAR;South African rand;R
 South Korea;🇰🇷;KRW;South Korean won;₩
+Sudan;🇸🇩;SDG;Sudanese pound;ج.س.
 Sweden;🇸🇪;SEK;Swedish krona;kr
 Switzerland;🇨🇭;CHF;Swiss franc
+Taiwan;🇹🇼;TWD;New Taiwan dollar;NT$
 Thailand;🇹🇭;THB;Thai baht;฿
 Turkey;🇹🇷;TRY;Turkish lira;₺
 Ukraine;🇺🇦;UAH;Ukrainian hryvnia;₴
+United Arab Emirates;🇦🇪;AED;U.A.E. dirham;د.إ
 United Kingdom;🇬🇧;GBP;Pound sterling;£
 United States;🇺🇸;USD;US dollar;US$
+Venezuela;🇻🇪;VES;Venezuelan Bolivar;Bs.
+Zambia;🇿🇲;ZMW;Zambian kwacha;ZK
