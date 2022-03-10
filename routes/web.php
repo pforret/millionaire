@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SitemapXmlController;
 use Illuminate\Support\Facades\Route;
 use Intervention\Image\Facades\Image;
 
@@ -21,6 +22,7 @@ Route::get('/billion', [ HomeController::class, 'billion']);
 Route::get('/in/{code}', [CurrencyController::class, 'show']);
 
 Route::get('/test', [ HomeController::class, 'test']);
+Route::get('/sitemap.xml', [SitemapXmlController::class, 'index']);
 
 //Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
 
