@@ -44,6 +44,12 @@ class ImageCreateCommand extends Command
                 $font->align('center');
                 $font->valign('center');
             });
+            $image->text(date("Y-m-d"), 32, 16, function($font) {
+                $font->file('storage/fonts/Nunito-Light.ttf');
+                $font->size(16);
+                $font->color('#FFFFFF');
+                $font->valign('top');
+            });
             $image->save("storage/app/public/$code.jpg");
 
         }

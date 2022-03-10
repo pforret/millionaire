@@ -12,10 +12,10 @@
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div style="font-family: Nunito" class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 @include("components.sharethis")
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h3 class="text-xl font-semibold my-4">How much is 1 000 000 {{$currency->name}}?</h3>
+                    <h2 class="text-xl font-semibold my-4">If you want to be a millionaire in {{$currency->flag}} {{$currency->country}} ...</h2>
                     <img src="/storage/{{$currency->code}}.jpg" alt="To be a millionaire" style="max-width: 100%">
                     If you would want to be a millionaire in {{$currency->flag}} {{$currency->country}} , you need at least 1 000 000 {{$currency->symbol}}, which is <br><br>
                     <div class="grid md:grid-cols-5 gap-4">
