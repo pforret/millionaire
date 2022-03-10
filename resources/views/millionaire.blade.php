@@ -4,7 +4,7 @@
     @section('page_img', $page_img)
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">What is the budget you need, if you want to be a millionaire in the following currencies?</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">What budget do you need, if you want to be a millionaire in the following currencies?</h2>
     </x-slot>
 
     <div class="py-12">
